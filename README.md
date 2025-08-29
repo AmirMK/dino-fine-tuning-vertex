@@ -9,7 +9,7 @@ This repository demonstrates the end-to-end process of fine-tuning a DINO image 
 First, clone this repository to your local machine:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/AmirMK/dino-fine-tuning-vertex.git
 cd dino-fine-tuning-vertex
 ```
 
