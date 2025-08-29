@@ -115,6 +115,8 @@ Navigate to the `deployment/deployment.py` file. You need to modify the followin
 
 Execute the `deployment/deployment.py` script. This script will handle building your custom container, pushing it to Artifact Registry, uploading your model to Vertex AI Model Registry, and deploying it to a Vertex AI Endpoint.
 
+**Note:** The deployment process within the `deployment.py` file is currently configured for CPU-based inference without any accelerators. To run inference with accelerators (e.g., GPUs), you can find relevant configuration options and examples in the Vertex AI documentation on [Endpoints](https://cloud.google.com/python/docs/reference/aiplatform/latest?utm_source=chatgpt.com#endpoints). For the full syntax and arguments available for the `deploy` method, refer to the [Vertex AI Python SDK `Model.deploy` documentation](https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.Model#google_cloud_aiplatform_Model_deploy).
+
 ```bash
 python deployment/deployment.py
 ```
