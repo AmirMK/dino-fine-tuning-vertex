@@ -2,6 +2,7 @@
 
 This repository provides a sample implementation for fine-tuning the DINO image embedding model using unlabeled images. It's designed to demonstrate the fine-tuning process and includes all the necessary steps to run this job as a custom training job on Google Cloud's Vertex AI. Please note, this code is for demonstration purposes and not intended for production environments.
 
+## test
 ### 1. Clone the Repository
 
 First, clone this repository to your local machine:
