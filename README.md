@@ -77,7 +77,48 @@ gcloud ai custom-jobs create \
 
 ## Deployment Process
 
-### 1. Clone the Repository
-### 2. ssssss
-### 1. Clone the Repository
+### 1. Create an Artifact Registry Repository
 
+Before building and pushing your custom inference container image, you need a Docker repository in Google Cloud's Artifact Registry. This command creates a new repository to store your Docker images.
+
+```bash
+gcloud artifacts repositories create {REPOSITORY} \
+    --repository-format=docker \
+    --location=us-central1 \
+    --description="Docker repository for DINO model serving images
+```
+
+*   **`gcloud artifacts repositories create {REPOSITORY}`**: This command initiates the creation of an Artifact Registry repository.
+*   **`{REPOSITORY}`**: This is a placeholder for the name you choose for your Docker repository. It should be a unique, lowercase name (e.g., `dino-model-serving`). This name will be referenced in subsequent steps.
+*   **`--repository-format=docker`**: Specifies that this repository will store Docker container images.
+*   **`--location=us-central1`**: Sets the Google Cloud region where your repository will be located. Ensure this matches your project's region.
+*   **`--description="..."`**: An optional, descriptive text for your repository.
+
+### 2. Configure `deployment/deployment.py`
+
+Navigate to the `deployment/deployment.py` file. You need to modify the following variables within this script to match your project and model details.
+
+
+*   **`PROJECT_ID`**: Your Google Cloud Project ID.
+*   **`REGION`**: Your Google Cloud Region (must match the Artifact Registry location you chose in Step 1).
+*   **`REPOSITORY`**: The name of the Artifact Registry repository created in Step 1 (e.g., `dino-docker-repo`).
+
+*   **`MODEL_DISPLAY_NAME`**: A user-friendly display name for your model in Vertex AI.
+*   **`IMAGE_NAME`**: A chosen name for your custom Docker image.
+*   **`CUSTOM_IMAGE_URI`**: The full URI where your custom image will be pushed/pulled from in Artifact Registry. This is typically constructed using the `REGION`, `PROJECT_ID`, `REPOSITORY`, and `IMAGE_NAME`.
+*   **`GCS_ARTIFACT_URI`**: The Google Cloud Storage path to the fine-tuned model weights. This should be the output location from your training job, as your custom container will load these weights for inference.
+*   **`LOCAL_MODEL_SOURCE_DIR`**: The local path to the source code directory required by the deployment script. This directory should contain your model's `predictor.py` file (which loads the fine-tuned model and handles inference) and your `requirements.txt` file.
+
+**Note on Machine Type:** The `deployment/deployment.py` script is currently configured for CPU inference. You can adjust the machine type and potentially enable GPU acceleration by modifying the `machine_type` and `accelerator_type`/`accelerator_count` parameters around line 99 in the `deployment/deployment.py` file if your inference requires different compute resources.
+
+### 3. Run the Deployment Script
+
+Execute the `deployment/deployment.py` script. This script will handle building your custom container, pushing it to Artifact Registry, uploading your model to Vertex AI Model Registry, and deploying it to a Vertex AI Endpoint.
+
+```bash
+python deployment/deployment.py
+```
+
+This process may take approximately 25-30 minutes to complete. Upon successful completion, the script will output the unique endpoint ID or name. This endpoint number is crucial as it's used to send inference requests to your deployed model.
+
+A sample notebook, `deployment/call_endpoint.ipynb`, is provided to demonstrate how to interact with your newly created Vertex AI endpoint for inference.
