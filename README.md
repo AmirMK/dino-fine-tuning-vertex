@@ -10,7 +10,7 @@ First, clone this repository to your local machine:
 
 ```bash
 git clone <your-repository-url>
-cd <your-repository-name>
+cd dino-fine-tuning-vertex
 ```
 
 
