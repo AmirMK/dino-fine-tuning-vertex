@@ -8,7 +8,7 @@ from dino_finetuned_predictor.predictor import DinoPredictor
 # --- Your Configuration ---
 PROJECT_ID = "vertex-ai-search-v2"
 REGION = "us-central1"
-REPOSITORY = "dino-docker-repo" # The Artifact Registry repo 
+REPOSITORY = "dino-docker-repo" # The Artifact Registry repo you created in step 2 of deployment
 
 # --- Configuration for the custom container image ---
 MODEL_DISPLAY_NAME = "dino-full_v0-built-with-cpr"
@@ -21,7 +21,7 @@ CUSTOM_IMAGE_URI = f"{REGION}-docker.pkg.dev/{PROJECT_ID}/{REPOSITORY}/{IMAGE_NA
 GCS_ARTIFACT_URI = f"gs://dino-model/dino_v2_finetuned_on_custom_data_full"
 
 # The LOCAL path to the source code for building the container
-LOCAL_MODEL_SOURCE_DIR = "./dino_fullfinetune_registry"
+LOCAL_MODEL_SOURCE_DIR = "./dino_finetuned_predictor"
 
 
 print("Configuration is set.")
