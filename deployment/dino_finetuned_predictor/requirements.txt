@@ -1,0 +1,6 @@
+torch==2.4.0
+transformers==4.55.2
+safetensors==0.6.2
+Pillow==11.3.0
+numpy==1.25.2
+google-cloud-storage==2.19.0
