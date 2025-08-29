@@ -1,8 +1,9 @@
 # Fine-tuning DINO Image Embedding Model
 
-This repository provides a sample implementation for fine-tuning the DINO image embedding model using unlabeled images. It's designed to demonstrate the fine-tuning process and includes all the necessary steps to run this job as a custom training job on Google Cloud's Vertex AI. Please note, this code is for demonstration purposes and not intended for production environments.
+This repository demonstrates the end-to-end process of fine-tuning a DINO image embedding model using unlabeled images. It provides the necessary steps to perform the fine-tuning and then deploy the resulting fine-tuned model as a managed endpoint on Google Cloud's Vertex AI. The included `.py` files are sample implementations designed to illustrate this workflow and are not intended for production environments.
 
-## test
+## Fine-tunnng Process
+
 ### 1. Clone the Repository
 
 First, clone this repository to your local machine:
@@ -73,3 +74,10 @@ gcloud ai custom-jobs create \
     --service-account=${SERVICE_ACCOUNT} \
     --worker-pool-spec=replica-count=1,machine-type=e2-standard-4,executor-image-uri=${EXECUTOR_IMAGE},python-module=trainer.task,package-uris=${WHEEL_URI}
 ```
+
+## Deployment Process
+
+### 1. Clone the Repository
+### 2. ssssss
+### 1. Clone the Repository
+
