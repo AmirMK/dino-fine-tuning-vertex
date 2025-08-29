@@ -6,7 +6,7 @@ This repository demonstrates the end-to-end process of fine-tuning a DINO image 
 
 ### 1. Clone the Repository
 
-First, clone this repository to your local machine:
+First, clone this repository to your GCP project:
 
 ```bash
 git clone https://github.com/AmirMK/dino-fine-tuning-vertex.git
