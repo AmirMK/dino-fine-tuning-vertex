@@ -32,19 +32,10 @@ print("Configuration is set.")
 aiplatform.init(project=PROJECT_ID, location=REGION, staging_bucket=GCS_BUCKET_NAME)
 print("Vertex AI SDK Initialized.")
 
-
-# ==============================================================================
-# Step 3: Upload the model to the Vertex AI Model Registry
-# ==============================================================================
-# This step tells Vertex AI how to find and use your custom model package.
-# It does not create a live endpoint yet, just registers the model.
-
-
 # ==============================================================================
 # Step 3: Build a custom prediction routine (CPR) model image
 # ==============================================================================
-# This is the key step from the documentation you provided.
-# It builds a new Docker image locally on your Workbench instance.
+# It builds a new Docker image locally.
 # It takes the base image, copies your predictor.py and other source files into it,
 # and runs 'pip install' on your requirements.txt.
 
@@ -62,8 +53,7 @@ print("✅ Custom CPR image built locally.")
 # Step 4: Push the custom image to Artifact Registry
 # ==============================================================================
 # The 'local_model' object you just created holds a reference to the image.
-# The .push_image() method uploads the local image to the cloud repository
-# you created earlier. This can take a few minutes as it uploads the data.
+# The .push_image() method uploads the local image to the cloud repository.
 
 print(f"Pushing the custom image to Artifact Registry...")
 # This requires Docker permissions and gcloud authentication, which you have
@@ -102,10 +92,10 @@ print(f"  - You can now deploy this 'model' object to an endpoint.")
 # This uses the 'model' object that was returned by the Model.upload() command.
 
 print("✅ Starting deployment of the model to a new CPU-only Vertex AI Endpoint.")
-print("⏳ This can take 10-15 minutes. Please be patient...")
+print("⏳ This can take 15-20 minutes. Please be patient...")
 
 # --- Deployment Configuration ---
-# Specify a standard machine type.
+# Specify a standard machine type for inference
 MACHINE_TYPE = "n2d-standard-4"
 
 # The .deploy() method creates the live prediction server.
